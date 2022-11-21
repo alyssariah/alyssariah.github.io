@@ -1,0 +1,33 @@
+@keyframes toBottomFromTop {
+  49% {
+    transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+
+.contact-icon {
+  font-size: 1.25rem;
+  background-color: #000000;
+  color: white;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #50bfc6;
+
+    svg {
+      animation: 300ms ease 0ms 1 normal forwards running toBottomFromTop;
+    }
+  }
+}
