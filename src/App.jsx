@@ -22,11 +22,11 @@ function App() {
   });
 
   const activeTab = () => {
-    if (inView) {
+    if (inView && !inView2) {
       return 'about';
     } else if (inView2 && !inView3) {
       return 'portfolio';
-    } else if (inView3 && !inView) {
+    } else if (inView3) {
       return 'contact';
     }
   };

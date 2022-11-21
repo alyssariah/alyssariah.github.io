@@ -21,7 +21,7 @@ export default function Projects() {
               target="_blank"
               rel="noreferrer"
               key={index}
-              className="w-[99%] md:w-[49%] lg:w-[32%] h-[250px] md:mr-1 overflow-hidden my-4 flex justify-center items-center relative"
+              className="w-[99%] md:w-[49%] lg:w-[32%] h-[250px] md:mr-1 overflow-hidden my-1 flex justify-center items-center relative"
             >
               <div className="w-[100%] absolute top-0 h-[100%] z-[2] bg-hover hover:bg-black-light-active flex flex-col justify-center items-center text-white-light transition-all duration-500">
                 <p className="font-serif text-heading-sm text-center mb-2 font-semibold">

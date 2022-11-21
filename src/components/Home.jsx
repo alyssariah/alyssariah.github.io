@@ -11,7 +11,7 @@ export default function Home() {
   ];
   return (
     <div className="w-[100%]">
-      <div className="w-[100%] relative flex justify-center items-center h-[100vh] lg:h-[75vh] xl:h-[100vh] 2xl:h-[80vh] overflow-hidden bg-black-light">
+      <div className="w-[100%] relative flex justify-center items-center h-[100vh] lg:h-[75vh] xl:h-[100vh] overflow-hidden bg-black-light">
         <img
           src="https://res.cloudinary.com/dwbqzx4rr/image/upload/v1632279496/Portfolio/jessy-smith-zFOm6KzA-7g-unsplash_a7sa9j_2_njc0iv.jpg"
           className="object-cover object-center min-w-[100%] absolute top-0 min-h-[100%] hidden lg:block"
