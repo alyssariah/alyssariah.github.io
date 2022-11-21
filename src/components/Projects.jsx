@@ -6,7 +6,6 @@ export default function Projects() {
     fetch('https://opensheet.elk.sh//1rSCXAKx7Pvd_FTYy3JIBdVTJTm-KZongre1eOOFiX9Y/Sheet1')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setProjects(data);
       });
   }, []);
