@@ -13,12 +13,12 @@ export default function Home() {
     <div className="w-[100%]">
       <div className="w-[100%] relative flex justify-center items-center h-[100vh] lg:h-[75vh] xl:h-[100vh] overflow-hidden bg-black-light">
         <img
-          src="https://res.cloudinary.com/dwbqzx4rr/image/upload/v1632279496/Portfolio/jessy-smith-zFOm6KzA-7g-unsplash_a7sa9j_2_njc0iv.jpg"
+          src="/home-image.png"
           className="object-cover object-center min-w-[100%] absolute top-0 min-h-[100%] hidden lg:block"
         />
         <div className="absolute top-0 w-[100%] hidden sm:flex justify-center items-center lg:hidden h-[calc(100vh-55px)]">
           <img
-            src="https://res.cloudinary.com/dwbqzx4rr/image/upload/v1632279074/Portfolio/kelly-sikkema-4xHgz_ZllQs-unsplash_3_rjwww3.jpg"
+            src="./tablet.png"
             className="object-contain object-center min-w-[100%] min-h-[100%]"
           />
         </div>

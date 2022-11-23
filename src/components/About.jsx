@@ -26,13 +26,13 @@ export default function About() {
       <div className="flex md:space-x-4">
         <div className="hidden md:flex flex-col md:w-[200px] lg:w-[280px] xl:w-[300px] py-4 relative">
           <img
-            src="https://res.cloudinary.com/dwbqzx4rr/image/upload/v1632354877/Portfolio/IMG_0170_rgd0du.jpg"
+            src="./about-1.png"
             alt="profile"
             className="w-[100%] rounded-tl-3xl rounded-br-3xl z-[5] my-16"
           />
 
           <img
-            src="https://res.cloudinary.com/dwbqzx4rr/image/upload/v1632354913/Portfolio/PXL_20210531_122054968_1_i0isme.jpg"
+            src="./about-2.jpeg"
             alt="backpacking with my dog"
             width="300px"
             className="w-[100%] rounded-tl-3xl rounded-br-3xl z-[5] my-16"
@@ -49,7 +49,7 @@ export default function About() {
             that balance simplicity, performance, and extensibility.
           </div>
           <img
-            src="https://res.cloudinary.com/dwbqzx4rr/image/upload/v1632354877/Portfolio/IMG_0170_rgd0du.jpg"
+            src="./about-1.png"
             alt="profile"
             className="w-[100%] max-w-[350px] rounded-tl-3xl rounded-br-3xl z-[5] my-4 block md:hidden"
           />
@@ -65,7 +65,7 @@ export default function About() {
           </div>
 
           <img
-            src="https://res.cloudinary.com/dwbqzx4rr/image/upload/v1632354913/Portfolio/PXL_20210531_122054968_1_i0isme.jpg"
+            src="./about-2.jpeg"
             alt="backpacking with my dog"
             className="w-[100%] max-w-[350px] rounded-tl-3xl rounded-br-3xl z-[5] my-4 block md:hidden"
           />
