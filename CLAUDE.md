@@ -1,7 +1,10 @@
 # Portfolio — alyssariah.github.io
 
 Personal portfolio for Alyssa Jackson. Next.js 16 (App Router) + React 19,
-TypeScript (strict), Tailwind CSS v4, deployed on Vercel. Visual design and
+TypeScript (strict), Tailwind CSS v4. Deployed two ways from one codebase:
+Vercel (`pnpm build`) and GitHub Pages at https://alyssariah.github.io
+(`pnpm build:static` → `out/`, published to the `gh-pages` branch by
+`.github/workflows/deploy-pages.yml` on every push to `main`). Visual design and
 copy follow the earlier Hugo portfolio (github.com/alyssariah/hugo-portfolio);
 work history mirrors LinkedIn.
 
@@ -13,7 +16,9 @@ work history mirrors LinkedIn.
 - `pnpm check` — format check + lint + typecheck + unit tests. **Run before calling work done.**
 - `pnpm test` / `pnpm test:watch` — Vitest unit/component tests
 - `pnpm test:e2e` — Playwright against a production build (port 3100), incl. axe a11y scan
-- `pnpm build` — production build; confirms routes still prerender as static (`○`)
+- `pnpm build` — Vercel production build; confirms routes prerender as static (`○`)
+- `pnpm build:static` — GitHub Pages static export to `out/`
+- `pnpm test:e2e:static` — the full E2E suite against the static export
 - `pnpm format` / `pnpm lint:fix` — auto-fix
 
 ## Architecture
@@ -47,10 +52,17 @@ Dependency direction: `app → features → components, content, hooks, lib`.
 - **Server Components by default.** Client components are small interactive
   leaves only: SiteNav, Typewriter, PhotoCarousel, PrinciplesTabs,
   ProjectGallery. Keep data/markup in the server parent and pass props down.
-- **Cache Components is on** (`cacheComponents: true`). Anything that reads
-  time, randomness, or uncached data must be in `'use cache'` (with
-  `cacheLife`) or under `<Suspense>`, or the build fails. Keep the home page
-  fully static. See `node_modules/next/dist/docs/01-app/02-guides/public-static-pages.md`.
+- **Every page must stay fully static** — it's what lets one codebase ship to
+  both Vercel and GitHub Pages. Cache Components is on for the Vercel build
+  but OFF for the static export (it requires a server), so don't depend on
+  `'use cache'`, `cacheLife`, cookies/headers, Server Actions, Route Handlers,
+  or reading time/randomness during render. Build-time values go through
+  `env` in `next.config.ts` (e.g. `NEXT_PUBLIC_BUILD_YEAR`). Run
+  `pnpm test:e2e:static` after anything rendering-related.
+- **SEO files:** `public/robots.txt` and `public/sitemap.xml` are static
+  (generated metadata routes can't be exported with Cache Components on).
+  Add new pages/projects to `sitemap.xml`; `src/content/sitemap.test.ts`
+  fails if it drifts.
 - **Content changes go in `src/content/`**, never hardcoded in components.
   New project → put the screenshot in `src/assets/projects/` and add an entry
   to `projects.ts` (it gets a page at `/projects/<slug>` automatically).
@@ -85,6 +97,8 @@ Dependency direction: `app → features → components, content, hooks, lib`.
 
 ## Deployment
 
-- Vercel, from GitHub. `main` → production; every branch/PR gets a preview URL.
-- Optional env: `NEXT_PUBLIC_SITE_URL` (canonical URL; otherwise derived from
-  `VERCEL_PROJECT_PRODUCTION_URL`). See `.env.example`.
+- Vercel project `alyssariah-portfolio` (team "alyssariah's projects"),
+  framework pinned in `vercel.json`. Pushes build previews; `main` → production.
+- GitHub Pages: canonical URL https://alyssariah.github.io (used in robots,
+  sitemap, and `NEXT_PUBLIC_SITE_URL` in the Pages workflow). Static images
+  are unoptimized there, so keep source assets in `src/assets` pre-sized.

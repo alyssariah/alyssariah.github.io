@@ -1,4 +1,3 @@
-import { cacheLife } from 'next/cache';
 import Link from 'next/link';
 
 import { SocialIcon } from '@/components/icons/social-icon';
@@ -6,12 +5,8 @@ import { Container } from '@/components/ui/container';
 import { ExternalLink } from '@/components/ui/external-link';
 import { siteConfig } from '@/content/site';
 
-async function CopyrightYear() {
-  'use cache';
-  // The year only changes once a year; cache so pages stay prerendered.
-  cacheLife('days');
-  return <>{new Date().getFullYear()}</>;
-}
+/** Set at build time in next.config.ts; every deploy rebuilds, so it stays current. */
+const copyrightYear = process.env.NEXT_PUBLIC_BUILD_YEAR;
 
 export function SiteFooter() {
   return (
@@ -41,7 +36,7 @@ export function SiteFooter() {
           ))}
         </ul>
         <p>
-          &copy; <CopyrightYear /> {siteConfig.name}
+          &copy; {copyrightYear} {siteConfig.name}
         </p>
       </Container>
     </footer>

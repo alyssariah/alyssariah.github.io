@@ -15,8 +15,12 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
   // Test against a production build so E2E reflects what ships.
+  // E2E_TARGET=static tests the GitHub Pages export (plain files, no server).
   webServer: {
-    command: `pnpm build && pnpm start --port ${PORT}`,
+    command:
+      process.env.E2E_TARGET === 'static'
+        ? `pnpm build:static && pnpm exec serve out --listen ${PORT} --no-clipboard`
+        : `pnpm build && pnpm start --port ${PORT}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
